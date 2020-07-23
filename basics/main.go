@@ -2,6 +2,22 @@ package main
 
 import "fmt"
 
+func f1(x int) (n int) {
+	n = x * 2
+	return
+}
+func f2(prefix string) (str string) {
+	str = prefix + " is good"
+	return
+}
+func pi() float32 {
+	return 3.14159265
+}
+func boolAndstr() (b bool, str string) {
+	b = false
+	str = "string"
+	return
+}
 func main() {
 	var n int = 10
 	n1 := 0.01
@@ -24,4 +40,9 @@ func main() {
 	fmt.Printf("Type: %T Value: %v\n", Var1, Var1)
 	fmt.Printf("Type: %T Value: %v\n", Var2, Var2)
 	fmt.Printf("Type: %T Value: %v\n", Var3, Var3)
+	fmt.Printf("%d x 2 = %d\n", n, f1(n))
+	fmt.Printf("%s\n", f2(str))
+	fmt.Printf("PI: %f\n", pi())
+	b, s := boolAndstr()
+	fmt.Printf("bool: %v string: %s\n", b, s)
 }
