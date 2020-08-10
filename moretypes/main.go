@@ -2,11 +2,27 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
+
+	"golang.org/x/tour/wc"
 )
 
 type Vertex struct {
 	X, Y int
+}
+
+type Coordinate struct {
+	Lat, Long float64
+}
+
+var m = map[string]Coordinate{
+	"Bell Labs": {
+		40.68433, -74.39967,
+	},
+	"Google": {
+		37.42202, -122.08408,
+	},
 }
 
 var (
@@ -141,6 +157,31 @@ func main() {
 	for _, value := range pow {
 		fmt.Printf("%d\n", value)
 	}
+
+	fmt.Println(m)
+
+	m2 := make(map[string]int)
+
+	m2["Answer"] = 42
+	fmt.Println("The value: ", m2["Answer"])
+	m2["Answer"] = 48
+	fmt.Println("The value: ", m2["Answer"])
+	delete(m2, "Answer")
+	fmt.Println("The value: ", m2["Answer"])
+	val, ok := m2["Answer"]
+	fmt.Println("The value: ", val, "Present?", ok)
+
+	wc.Test(WordCount)
+
+	hypot := func(x1, y1 float64) float64 {
+		return math.Sqrt(x1*x1 + y1*y1)
+	}
+
+	fmt.Println()
+	fmt.Println(hypot(5, 12))
+
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
 }
 
 func printSlice(s []int) {
@@ -149,4 +190,12 @@ func printSlice(s []int) {
 
 func printSlice2(s string, x []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n", s, len(x), cap(x), x)
+}
+
+func WordCount(s string) map[string]int {
+	return map[string]int{"x": 1}
+}
+
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
 }
